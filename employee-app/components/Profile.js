@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {StyleSheet, Text, View, Image, Linking, Platform, Alert} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Title, Card, Button } from "react-native-paper";
@@ -16,7 +15,7 @@ const Profile = (props) => {
     }
     
     const deleteEmployee = () => {
-        let url = 'http://192.168.1.7:3000/employee/' + _id
+        let url = 'http://192.168.8.107:3000/employee/' + _id
         fetch(url, {
             method: 'DELETE'
         })

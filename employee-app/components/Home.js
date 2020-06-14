@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, Image, FlatList, Alert } from 'react-native';
 import { Card, FAB } from 'react-native-paper';
-import { useSelector, useDispatch } from "react-redux";
+
+import { MyContext } from '../App'
 
 
 const Home = (props) => {
-    // const [data, setData] = useState([])
-    // const [loading, setLoading] = useState(true)
-    const dispatch = useDispatch()
-    const { data, loading } = useSelector(state => {
-        return state
-    })
+    const { state, dispatch } = useContext(MyContext)
+    const { data, loading } = state
 
     const fetchData = () => {
-        fetch('http://192.168.1.7:3000/employee')
+        fetch('http://192.168.8.107:3000/employee')
             .then(res => res.json())
             .then(data => {
                 if (data.status){

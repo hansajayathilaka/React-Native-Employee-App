@@ -1,7 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import React, { createContext, useReducer } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import Home from './components/Home';
 import EmployeeForm from "./components/EmployeeForm";
@@ -9,10 +7,11 @@ import Profile from './components/Profile';
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { reducer } from './reducers/reducer'
+import { reducer, initState } from './reducers/reducer'
 
 const Stack = createStackNavigator();
-const store = createStore(reducer)
+
+export const MyContext = createContext()
 
 function App() {
 
@@ -48,12 +47,13 @@ function App() {
 }
 
 export default () => {
+    const [ state, dispatch ] = useReducer(reducer, initState)
     return (
-        <Provider store={ store }>
+        <MyContext.Provider value={{ state, dispatch }}>
             <NavigationContainer>
                 <App />
             </NavigationContainer>
-        </Provider>
+        </MyContext.Provider>
     );
 }
 

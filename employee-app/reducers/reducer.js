@@ -1,5 +1,5 @@
 
-const initState = {
+export const initState = {
     data: [],
     loading: true,
 }

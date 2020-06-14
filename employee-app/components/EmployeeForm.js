@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Modal, Alert, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Modal, Alert, KeyboardAvoidingView } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -67,7 +67,7 @@ const EmployeeForm = (props) => {
     }
 
     const submitData = () => {
-        fetch('http://192.168.1.7:3000/employee', {
+        fetch('http://192.168.8.107:3000/employee', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ const EmployeeForm = (props) => {
     }
 
      const updateData = () => {
-        fetch('http://192.168.1.7:3000/employee/' + props.route.params._id, {
+        fetch('http://192.168.8.107:3000/employee/' + props.route.params._id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -114,6 +114,7 @@ const EmployeeForm = (props) => {
                 props.navigation.navigate('Home')
             })
             .catch(err => {
+                console.log(err)
                 Alert.alert('Something went wrong.')
             })
     }
